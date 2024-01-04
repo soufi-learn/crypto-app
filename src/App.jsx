@@ -1,11 +1,15 @@
-import { Col, Container, Row, Stack } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import HomePage from "./components/templates/homePage";
+import Header from "./components/templates/header";
 
 function App() {
 
   return (
     <>
-      <HomePage />
+      <Container >
+        <Header />
+        <HomePage />
+      </Container>
     </>
   );
 }
