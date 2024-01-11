@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <Container >
+      <Container fluid='lg' >
         <Header />
         <HomePage />
       </Container>

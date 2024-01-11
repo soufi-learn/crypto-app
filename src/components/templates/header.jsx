@@ -3,7 +3,7 @@ import { Col, Row } from 'react-bootstrap'
 
 function Header() {
     return (
-        <header className='mb-5 p-2 px-3 mt-4 rounded text-dark' style={{ background: '#9EC8B9' }}>
+        <header className='mb-5 p-2 px-3 mt-4 rounded header-wrapper' >
             <Row className='align-items-center'>
                 <Col className=''><h2>Crypto App</h2></Col>
 
