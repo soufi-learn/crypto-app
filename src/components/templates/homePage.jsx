@@ -31,7 +31,7 @@ function HomePage() {
     }, [page, currency]);
 
     return (
-        <div>
+        <div className='home-page-container'>
             {!isLoading && <Search currency={currency} chart={chart} setCurrency={setCurrency} setOpenModal={setOpenModal} setChart={setChart} />}
             <TableCoin coins={coins} isLoading={isLoading} setChart={setChart} setOpenModal={setOpenModal} />
             {!isLoading && <Pagination page={page} setPage={setPage} />}
