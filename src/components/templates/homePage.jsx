@@ -12,6 +12,7 @@ function HomePage() {
     const [currency, setCurrency] = useState('usd');
     const [chart, setChart] = useState(false);
     const [openModal, setOpenModal] = useState(false);
+    const [priceSign, setPriceSign] = useState('$');
 
 
     useEffect(() => {
@@ -32,8 +33,8 @@ function HomePage() {
 
     return (
         <div className='home-page-container'>
-            {!isLoading && <Search currency={currency} chart={chart} setCurrency={setCurrency} setOpenModal={setOpenModal} setChart={setChart} />}
-            <TableCoin coins={coins} isLoading={isLoading} setChart={setChart} setOpenModal={setOpenModal} />
+            {!isLoading && <Search currency={currency} chart={chart} setCurrency={setCurrency} setOpenModal={setOpenModal} setChart={setChart} setPriceSign={setPriceSign} />}
+            <TableCoin coins={coins} isLoading={isLoading} setChart={setChart} setOpenModal={setOpenModal} priceSign={priceSign} />
             {!isLoading && <Pagination page={page} setPage={setPage} />}
             <Chart chart={chart} setChart={setChart} modal={openModal} setOpenModal={setOpenModal} />
         </div>

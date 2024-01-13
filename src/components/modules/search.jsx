@@ -4,7 +4,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import '../../css/search.css';
 import { FaTimes } from 'react-icons/fa';
 
-function Search({ chart, currency, setCurrency, setOpenModal, setChart }) {
+function Search({ chart, currency, setCurrency, setOpenModal, setChart, setPriceSign }) {
     const [text, setText] = useState('');
     const [coins, setCoins] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +52,14 @@ function Search({ chart, currency, setCurrency, setOpenModal, setChart }) {
     const changeCurrency = (e) => {
         setCurrency(e.target.value);
         setCoins([]);
-        setText('')
+        setText('');
+        if (e.target.value === 'usd') {
+            setPriceSign('$')
+        } else if (e.target.value === 'eur') {
+            setPriceSign('€')
+        } else if (e.target.value === 'jpy') {
+            setPriceSign('¥')
+        }
     }
 
     const showCoinDetails = async (coin) => {

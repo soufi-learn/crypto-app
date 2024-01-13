@@ -3,7 +3,7 @@ import chartDown from "../../assets/chart-down.svg";
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
 import { marketChart } from "../services/cryptoAPI";
 
-const TableRow = ({ coin, setChart, setOpenModal }) => {
+const TableRow = ({ coin, setChart, setOpenModal, priceSign }) => {
     const {
         image,
         name,
@@ -12,6 +12,8 @@ const TableRow = ({ coin, setChart, setOpenModal }) => {
         price_change_percentage_24h,
         total_volume,
     } = coin;
+
+
 
     const showhandler = async () => {
         setOpenModal(true);
@@ -32,7 +34,7 @@ const TableRow = ({ coin, setChart, setOpenModal }) => {
                 <span className="crypto-symbol">{symbol.toUpperCase()}</span>
             </td>
             <td>{name}</td>
-            <td>${current_price.toLocaleString()}</td>
+            <td>{priceSign}{current_price.toLocaleString()}</td>
             <td
                 className={
                     price_change_percentage_24h > 0
@@ -49,7 +51,7 @@ const TableRow = ({ coin, setChart, setOpenModal }) => {
 
                 %
             </td>
-            <td>${total_volume.toLocaleString()}</td>
+            <td>{priceSign}{total_volume.toLocaleString()}</td>
             <td>
                 <img
                     src={coin.price_change_percentage_24h > 0 ? chartUp : chartDown}
