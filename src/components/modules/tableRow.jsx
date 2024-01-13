@@ -1,8 +1,9 @@
 import chartUp from "../../assets/chart-up.svg";
 import chartDown from "../../assets/chart-down.svg";
 import { FaCaretUp, FaCaretDown } from 'react-icons/fa';
+import { marketChart } from "../services/cryptoAPI";
 
-const TableRow = ({ coin }) => {
+const TableRow = ({ coin, setChart, setOpenModal }) => {
     const {
         image,
         name,
@@ -12,9 +13,21 @@ const TableRow = ({ coin }) => {
         total_volume,
     } = coin;
 
+    const showhandler = async () => {
+        setOpenModal(true);
+
+        try {
+            const response = await fetch(marketChart(coin.id));
+            const data = await response.json();
+            setChart({ ...data, coin });
+        } catch (error) {
+            setChart(false)
+        }
+    }
+
     return (
         <tr>
-            <td>
+            <td className="details-btn" onClick={showhandler}>
                 <img src={image} alt={symbol} className="crypto-img" />
                 <span className="crypto-symbol">{symbol.toUpperCase()}</span>
             </td>

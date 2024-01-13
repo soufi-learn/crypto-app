@@ -3,7 +3,7 @@ import { RotatingLines } from 'react-loader-spinner';
 import TableRow from './tableRow';
 import '../../css/table-coin.css';
 
-function TableCoin({ coins, isLoading }) {
+function TableCoin({ coins, isLoading, setChart, setOpenModal }) {
     return (
         isLoading ? (
             <div className='d-flex justify-content-center'>
@@ -34,7 +34,7 @@ function TableCoin({ coins, isLoading }) {
 
                     <tbody>
                         {coins.map(coin => (
-                            <TableRow coin={coin} key={coin.id} />
+                            <TableRow coin={coin} key={coin.id} setChart={setChart} setOpenModal={setOpenModal} />
                         ))}
                     </tbody>
                 </table>

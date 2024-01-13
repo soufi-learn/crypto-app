@@ -32,6 +32,9 @@ table tbody .crypto-img {
 table tbody .crypto-symbol {
   color: #bcbcbc;
 }
+table tbody .details-btn {
+  cursor: pointer;
+}
 
 .top-price-change {
   color: springgreen;

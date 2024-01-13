@@ -16,6 +16,10 @@
   display: flex;
 }
 
+.search-wrapper .input-box {
+  position: relative;
+}
+
 .search-wrapper .search-input {
   width: 310px;
   border: none;
@@ -38,6 +42,23 @@
   color: #89a4b5;
 }
 
+/* clear button */
+.search-wrapper .clear-input-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0.6rem;
+  font-size: 1rem;
+  color: #fff;
+  transition: all 0.2s;
+  outline: none;
+  border: none;
+}
+
+.search-wrapper .clear-input-btn:hover {
+  color: #e16464;
+}
+
 /* select box */
 .search-wrapper .price-select {
   width: 100px;
@@ -57,7 +78,6 @@
   margin-top: 0.7rem;
   position: absolute;
   top: 43px;
-  /* left: 0; */
   z-index: 99;
   max-height: 530px;
   padding: 0.6rem;
@@ -77,6 +97,7 @@
   align-items: center;
   border-bottom: 1px solid rgb(48, 69, 83);
   padding: 0.6rem 0;
+  cursor: pointer;
 }
 
 .search-wrapper .coins-list .coin-item:last-child {

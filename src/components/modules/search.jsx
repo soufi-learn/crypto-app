@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { searchCoin } from '../services/cryptoAPI';
+import { marketChart, searchCoin } from '../services/cryptoAPI';
 import { RotatingLines } from 'react-loader-spinner';
 import '../../css/search.css';
+import { FaTimes } from 'react-icons/fa';
 
-function Search({ currency, setCurrency }) {
+function Search({ chart, currency, setCurrency, setOpenModal, setChart }) {
     const [text, setText] = useState('');
     const [coins, setCoins] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
-    const [showcoinsBox, setShowCoinsBox] = useState(false);
 
     useEffect(() => {
         const controller = new AbortController();
@@ -55,16 +55,24 @@ function Search({ currency, setCurrency }) {
         setText('')
     }
 
-    const hideCoinsList = (e) => {
-        setCoins([]);
-        setText('')
+    const showCoinDetails = async (coin) => {
+        setOpenModal(true);
+        const response = await fetch(marketChart(coin.id));
+        const data = await response.json();
+        setChart({ ...data, coin });
     }
+
+
+
 
     return (
         <div className='search-wrapper'>
             <section className='search-controller-box'>
                 <div>
-                    <input type="text" value={text} placeholder='search...' className='form-control search-input' onChange={(e) => setText(e.target.value.trimStart())} onBlur={hideCoinsList} />
+                    <div className='input-box'>
+                        <input type="text" value={text} placeholder='search...' className='form-control search-input' onChange={(e) => setText(e.target.value.trimStart())} />
+                        {text && <button className='btn clear-input-btn' onClick={() => setText('')}><FaTimes /></button>}
+                    </div>
                     {(!!coins.length || isLoading || text) && (
                         <section className='coins-list-box rounded'>
                             <ul className='coins-list'>
@@ -89,7 +97,7 @@ function Search({ currency, setCurrency }) {
                                 )}
 
                                 {coins.map(coin => (
-                                    <li key={coin.id} className='coin-item'>
+                                    <li key={coin.id} className='coin-item' onClick={() => showCoinDetails(coin)}>
                                         <img src={coin.thumb} alt={coin.name} className='coin-thumb' />
                                         <p>{coin.name}</p>
                                     </li>)
